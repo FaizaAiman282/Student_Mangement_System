@@ -87,31 +87,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <!-- <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            
-            event.preventDefault();
-
-            const usernameInput = document.getElementById('username').value;
-            const passwordInput = document.getElementById('password').value;
-
-            const registeredUser = localStorage.getItem('registeredUsername');
-            const registeredPass = localStorage.getItem('registeredPassword');
-
-            if (!registeredUser || !registeredPass) {
-                alert("No account found! Please register first.");
-                window.location.href = "register.html";
-                return;
-            }
-
-            if (usernameInput === registeredUser && passwordInput === registeredPass) {
-                alert("Login successful!");
-                window.location.href = "dashboard.html";
-            } else {
-                alert("Invalid username or password. Please try again.");
-            }
-        });
-    </script> -->
     <script>
 document.getElementById("loginForm").addEventListener("submit", async function(event) {
 
@@ -120,21 +95,29 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    const response = await fetch("http://localhost:3000/users");
+    const response = await fetch("http://localhost:8080/users");
     const users = await response.json();
 
     const user = users.find(
         u => u.username === username && u.password === password
     );
 
-    if(user){
-        localStorage.setItem("loggedInUser", username);
-        alert("Login Successful");
-        window.location.href = "dashboard.html";
-    } else {
-        alert("Invalid Username or Password");
-    }
+    if(user && user.id){
+
+    localStorage.setItem(
+        "loggedInUserId",
+        user.id
+    );
+    
+
+    alert("Login Successful");
+    window.location.href = "dashboard.html";
+}
+else{
+    alert("Invalid Username or Password");
+}
 });
+
 </script>
 </body>
 </html>

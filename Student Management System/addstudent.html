@@ -113,13 +113,14 @@ document.getElementById("studentForm").addEventListener("submit", async function
     e.preventDefault();
 
     const student = {
-        id: document.getElementById("studentId").value,
-        name: document.getElementById("studentName").value,
-        branch: document.getElementById("studentBranch").value,
-        cgpa: document.getElementById("studentCgpa").value
-    };
+    id: document.getElementById("studentId").value,
+    name: document.getElementById("studentName").value,
+    branch: document.getElementById("studentBranch").value,
+    cgpa: document.getElementById("studentCgpa").value,
+    userId: localStorage.getItem("loggedInUserId")
+};
 
-    await fetch("http://localhost:3000/students", {
+    await fetch("http://localhost:8080/students", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

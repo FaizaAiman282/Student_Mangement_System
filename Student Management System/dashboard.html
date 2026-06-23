@@ -51,7 +51,8 @@
 
 <script>
 async function loadDashboard() {
-    const response = await fetch("http://localhost:3000/students");
+    const userId =localStorage.getItem("loggedInUserId");
+    const response =await fetch(`http://localhost:8080/students/user/${userId}`);
     const students = await response.json();
 
     document.getElementById("count").textContent = students.length;

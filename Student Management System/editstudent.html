@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     try {
         const response = await fetch(
-            `http://localhost:3000/students/${studentId}`
+            `http://localhost:8080/students/${studentId}`
         );
 
         const student = await response.json();
@@ -130,7 +130,7 @@ document.getElementById('editStudentForm').addEventListener('submit', async func
     try {
 
         const response = await fetch(
-            `http://localhost:3000/students/${id}`,
+            `http://localhost:8080/students/${id}`,
             {
                 method: 'PUT',
                 headers: {
